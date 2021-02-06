@@ -70,7 +70,15 @@ ynh_secure_remove $final_path
 
 mkdir -p $final_path
 
+if [[ $root_access -eq 1 ]]; then
+
+#copy files from with_root_access folder to the final_path
+cp -a ../sources/with_root_access/. $final_path
+else
+#copy files from root_access_disabled folder to the final_path
 cp -a ../sources/root_access_disabled/. $final_path
+cp -a ../sources/root_access_disabled/. $final_path
+fi
 
 #=================================================
 # SECURE FILES AND DIRECTORIES

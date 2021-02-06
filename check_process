@@ -7,6 +7,7 @@
 	; Manifest
 		domain="domain.tld"	(DOMAIN)
 		path="/path"	    (PATH)
+		root_access=0
         is_public=1	        (PUBLIC|public=1|private=0)
 
 	; Checks

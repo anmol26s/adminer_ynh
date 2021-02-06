@@ -22,6 +22,7 @@ ynh_abort_if_errors
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
 is_public=$YNH_APP_ARG_IS_PUBLIC
+root_access=$YNH_APP_ARG_ROOT_ACCESS
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -43,6 +44,7 @@ ynh_script_progression --message="Storing installation settings..." --weight=1
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=is_public --value=$is_public
+ynh_app_setting_set --app=$app --key=root_access --value=$root_access
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -54,7 +56,14 @@ ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 
 mkdir -p $final_path
 
+if [[ $root_access -eq 1 ]]; then
+#copy files from with_root_access folder to the final_path
+ cp -a ../sources/with_root_access/. $final_path
+else
+#copy files from root_access_disabled folder to the final_path
 cp -a ../sources/root_access_disabled/. $final_path
+cp -a ../sources/root_access_disabled/. $final_path
+fi
 
 #=================================================
 # CREATE DEDICATED USER

@@ -6,7 +6,8 @@
         "en": "Database management in a single PHP file",
         "fr": "Gestionnaire de base de données en un seul fichier PHP"
     },
-    "version": "4.7.7~ynh1",
+
+    "version": "4.7.8~ynh1",
     "url": "https://www.adminer.org/",
     "license": "Apache-2.0",
     "maintainer": {
@@ -47,6 +48,15 @@
                 },
                 "example": "/adminer",
                 "default": "/adminer"
+            },
+            {
+                "name": "root_access",
+                "type": "boolean",
+                "ask": {
+                    "en": "Allow root access(For security its disabled by default)?",
+                    "fr": "Autoriser l'accès racine (pour la sécurité désactivée par défaut)?"
+                },
+                "default": false
             },
            {
                 "name": "is_public",
