@@ -19,6 +19,7 @@ ynh_abort_if_errors
 #=================================================
 # LOAD SETTINGS
 #=================================================
+ynh_print_info --message="Loading installation settings..."
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -55,4 +56,4 @@ ynh_backup --src_path="/etc/php/$phpversion/fpm/pool.d/$app.conf"
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Backup script completed for Adminer. (YunoHost will then actually copy those files to the archive)." --last
+ynh_print_info --message="Backup script completed for Adminer. (YunoHost will then actually copy those files to the archive)."

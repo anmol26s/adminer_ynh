@@ -43,6 +43,13 @@ if [ -z "$final_path" ]; then
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 fi
 
+# Cleaning legacy permissions
+if ynh_legacy_permissions_exists; then
+	ynh_legacy_permissions_delete_all
+
+	ynh_app_setting_delete --app=$app --key=is_public
+fi
+
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
@@ -71,13 +78,11 @@ ynh_secure_remove $final_path
 mkdir -p $final_path
 
 if [[ $root_access -eq 1 ]]; then
-
 #copy files from with_root_access folder to the final_path
-cp -a ../sources/with_root_access/. $final_path
-else
-#copy files from root_access_disabled folder to the final_path
-cp -a ../sources/root_access_disabled/. $final_path
-cp -a ../sources/root_access_disabled/. $final_path
+	cp -a ../sources/with_root_access/. $final_path
+	else
+	#copy files from root_access_disabled folder to the final_path
+	cp -a ../sources/root_access_disabled/. $final_path
 fi
 
 #=================================================
@@ -102,7 +107,7 @@ ynh_add_nginx_config
 ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=1
 
 # Create a dedicated php-fpm config
-ynh_add_fpm_config --phpversion=$YNH_PHP_VERSION --package="$extra_php_dependencies"
+ynh_add_fpm_config --package="$extra_php_dependencies"
 
 #=================================================
 # RELOAD NGINX
