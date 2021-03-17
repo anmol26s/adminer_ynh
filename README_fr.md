@@ -11,7 +11,7 @@ Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install
 ## Vue d'ensemble
 Adminer (anciennement phpMinAdmin, meilleure alternative à phpMyAdmin) est un outil de gestion de base de données (MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, SimpleDB, Elasticsearch, MongoDB). Remplacez phpMyAdmin par Adminer et vous obtiendrez une interface utilisateur plus ordonnée, une meilleure prise en charge des fonctionnalités MySQL, des performances plus élevées et plus de sécurité. [Voir comparaison détaillée](https://www.adminer.org/en/phpmyadmin).
 
-**Version incluse :** 4.7.8
+**Version incluse :** 4.8.0
 
 ## Captures d'écran
 
