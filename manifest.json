@@ -7,8 +7,14 @@
         "fr": "Gestionnaire de base de données en un seul fichier PHP"
     },
 
-    "version": "4.8.0~ynh1",
+    "version": "4.8.1~ynh1",
     "url": "https://www.adminer.org/",
+    "upstream": {
+        "license": "Apache-2.0",
+        "website": "https://www.adminer.org/",
+        "demo": "https://demo.adminer.org/adminer.php?username=",
+        "code": "https://github.com/vrana/adminer/"
+    },
     "license": "Apache-2.0",
     "maintainer": {
        "name": "Anmol Sharma",
@@ -21,7 +27,7 @@
        "url": "https://github.com/jesuisfol/adminer_ynh"
         },
     "requirements": {
-        "yunohost": ">= 4.1.7"
+        "yunohost": ">= 4.2.4"
     },
     "multi_instance": true,
     "services": [
