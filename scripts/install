@@ -59,13 +59,10 @@ ynh_script_progression --message="Setting up source files..." --weight=11
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$final_path"  --source_id="app"
-ynh_setup_source --dest_dir="$final_path" --source_id="css"
-
-#mkdir -p $final_path
+mkdir -p $final_path
 
 #copy files from with_root_access folder to the final_path
-#cp -a ../sources/with_root_access/. $final_path
+cp -a ../sources/with_root_access/. $final_path
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
