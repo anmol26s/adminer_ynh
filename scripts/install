@@ -67,7 +67,6 @@ cp -a ../sources/with_root_access/. $final_path
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod 755 $final_path/adminer.php
 
 #=================================================
 # NGINX CONFIGURATION
