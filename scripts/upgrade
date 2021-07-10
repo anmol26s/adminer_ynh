@@ -31,7 +31,7 @@ upgrade_type=$(ynh_check_app_version_changed)
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
-ynh_script_progression --message="Backing up Adminer before upgrading (may take a while)..." --weight=3
+ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=3
 
 # Backup the current version of the app
 ynh_backup_before_upgrade
@@ -76,13 +76,11 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	# Copy source files
 	ynh_secure_remove $final_path
-	ynh_setup_source --dest_dir="$final_path"  --source_id="app"
-	ynh_setup_source --dest_dir="$final_path" --source_id="css"
 
-	#mkdir -p $final_path
+	mkdir -p $final_path
 
 	#copy files from with_root_access folder to the final_path
-	#cp -a ../sources/with_root_access/. $final_path
+	cp -a ../sources/with_root_access/. $final_path
 fi
 
 chmod 750 "$final_path"
@@ -117,4 +115,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of Adminer completed" --last
+ynh_script_progression --message="Upgrade of $app completed" --last
