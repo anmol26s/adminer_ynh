@@ -21,8 +21,7 @@ ynh_abort_if_errors
 
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
-is_public=$YNH_APP_ARG_IS_PUBLIC
-root_access=$YNH_APP_ARG_ROOT_ACCESS
+admin=$YNH_APP_ARG_ADMIN
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -43,7 +42,7 @@ ynh_script_progression --message="Storing installation settings..." --weight=1
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
-ynh_app_setting_set --app=$app --key=root_access --value=$root_access
+ynh_app_setting_set --app=$app --key=admin --value=$admin
 
 #=================================================
 # CREATE DEDICATED USER
@@ -60,21 +59,14 @@ ynh_script_progression --message="Setting up source files..." --weight=11
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
-
 mkdir -p $final_path
 
-if [[ $root_access -eq 1 ]]; then
-	#copy files from with_root_access folder to the final_path
-	 cp -a ../sources/with_root_access/. $final_path
-	else
-	#copy files from root_access_disabled folder to the final_path
-	cp -a ../sources/root_access_disabled/. $final_path
-fi
+#copy files from with_root_access folder to the final_path
+cp -a ../sources/with_root_access/. $final_path
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod 755 $final_path/adminer.php
 
 #=================================================
 # NGINX CONFIGURATION
@@ -99,10 +91,7 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 ynh_script_progression --message="Configuring permissions..." --weight=1
 
 # Make app public if necessary or protect it
-if [ $is_public -eq 1 ]
-then
-	ynh_permission_update --permission="main" --add="visitors"
-fi
+ynh_permission_update --permission="main" --remove="all_users" --add=$admin
 
 #=================================================
 # RELOAD NGINX
@@ -115,4 +104,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of Adminer completed" --last
+ynh_script_progression --message="Installation of $app completed" --last

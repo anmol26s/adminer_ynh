@@ -31,7 +31,7 @@ upgrade_type=$(ynh_check_app_version_changed)
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
-ynh_script_progression --message="Backing up Adminer before upgrading (may take a while)..." --weight=3
+ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=3
 
 # Backup the current version of the app
 ynh_backup_before_upgrade
@@ -79,19 +79,13 @@ then
 
 	mkdir -p $final_path
 
-	if [[ $root_access -eq 1 ]]; then
 	#copy files from with_root_access folder to the final_path
-		cp -a ../sources/with_root_access/. $final_path
-		else
-		#copy files from root_access_disabled folder to the final_path
-		cp -a ../sources/root_access_disabled/. $final_path
-	fi
+	cp -a ../sources/with_root_access/. $final_path
 fi
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod 755 $final_path/adminer.php
 
 #=================================================
 # NGINX CONFIGURATION
@@ -120,4 +114,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of Adminer completed" --last
+ynh_script_progression --message="Upgrade of $app completed" --last
