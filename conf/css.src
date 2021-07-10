@@ -1,0 +1,7 @@
+SOURCE_URL=https://raw.githubusercontent.com/vrana/adminer/master/designs/hever/adminer.css
+SOURCE_SUM=fe222d82369d099fa0f1bb372d90a2e532e50478a27d7111d27a5dc8e2df2044
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=css
+SOURCE_IN_SUBDIR=true
+SOURCE_FILENAME=adminer.css
+SOURCE_EXTRACT=false

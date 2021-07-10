@@ -48,18 +48,9 @@
                 "default": "/adminer"
             },
             {
-                "name": "root_access",
-                "type": "boolean",
-                "ask": {
-                    "en": "Allow root access(For security its disabled by default)?",
-                    "fr": "Autoriser l'accès racine (pour la sécurité désactivée par défaut)?"
-                },
-                "default": false
-            },
-           {
-                "name": "is_public",
-                "type": "boolean",
-                "default": true
+                "name": "admin",
+                "type": "user",
+                "example": "johndoe"
             }
         ]
     }
